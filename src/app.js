@@ -1,41 +1,29 @@
 import 'babel-polyfill';
 import './style/main.scss';
-import config from './config.json';
 import hu from './lang/hu.json';
 import defaultView from './views/default.ejs';
-import CanvasController from './canvas';
-import FormController from './form';
 import DragNDrop from './dragndrop';
 import ImageUpload from './imageUpload';
 import CanvasDownload from './canvasDownload';
+import Jeloltplakat2018 from "./poster-types/jeloltplakat-2018";
 
 $(function() {
     $('#content').html(defaultView({strings: hu}));
 
-    ImageUpload.onUpload(CanvasController.setUserImage);
-    CanvasController.init(config);
-    FormController.init(config);
-    DragNDrop.init(ImageUpload.readImageFile);
+    $('#poster_type_select').change(changeType);
 
-    FormController.setCallbacks({
-        textChange: CanvasController.setText,
-        saveClick: function(type) {
-            switch(type) {
-                case 'poster':
-                    CanvasDownload.download(CanvasController.getCanvases().poster, FormController.getTexts().name, 'plakat');
-                    break;
-                case 'fb_profile':
-                    CanvasDownload.download(CanvasController.getCanvases().fb_profile, FormController.getTexts().name, 'profilkep');
-                    break;
-                case 'fb_cover':
-                    CanvasDownload.download(CanvasController.getCanvases().fb_cover, FormController.getTexts().name, 'boritokep');
-                    break;
-            }
-        },
-        userImageType: CanvasController.setUserImageType,
-        userImageSelected: ImageUpload.readImageFile,
-        showCircle: CanvasController.setCircle,
-        cutCircle: CanvasController.setCircleCut,
-        circleHeight: CanvasController.setCircleHeight
-    });
+    DragNDrop.init(ImageUpload.readImageFile);
 });
+
+function changeType() {
+    const type = $('#poster_type_select').val();
+    const controlsRoot = $('.controls');
+    const canvasRoot = $('.preview_cnt');
+    let typeController;
+
+    if (type === 'jeloltplakat-2018') {
+        typeController = new Jeloltplakat2018(controlsRoot, canvasRoot, ImageUpload, CanvasDownload);
+    }
+
+    ImageUpload.onUpload((img, isPNG) => typeController.setUserImage(img, isPNG));
+}

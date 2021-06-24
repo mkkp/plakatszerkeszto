@@ -1,0 +1,165 @@
+{
+  "canvases": [
+    {
+      "id": "poster",
+      "size": {
+        "width": 2480,
+        "height": 3508
+      },
+      "texts": [
+        {
+          "id": "name",
+          "position": {
+            "width": 85,
+            "height": 3.5,
+            "top": 80
+          }
+        },
+        {
+          "id": "area",
+          "position": {
+            "width": 85,
+            "height": 2,
+            "top": 76
+          }
+        },
+        {
+          "id": "promise",
+          "position": {
+            "width": 90,
+            "height": 8,
+            "top": 87
+          }
+        }
+      ],
+      "circlePosition": {
+        "top": 20,
+        "bottom": 72
+      }
+    },
+    {
+      "id": "fb_profile",
+      "size": {
+        "width": 1000,
+        "height": 1000
+      },
+      "texts": [
+        {
+          "id": "name",
+          "position": {
+            "width": 90,
+            "height": 8,
+            "top": 88
+          }
+        }
+      ],
+      "circlePosition": {
+        "top": 24,
+        "bottom": 84
+      }
+    },
+    {
+      "id": "fb_cover",
+      "size": {
+        "width": 851,
+        "height": 315
+      },
+      "texts": [
+        {
+          "id": "name",
+          "position": {
+            "width": 50,
+            "height": 10,
+            "top": 27,
+            "centerX": 67
+          }
+        },
+        {
+          "id": "area",
+          "position": {
+            "width": 50,
+            "height": 5,
+            "top": 17,
+            "centerX": 67
+          }
+        },
+        {
+          "id": "promise",
+          "position": {
+            "width": 60,
+            "height": 18,
+            "top": 42,
+            "centerX": 67
+          }
+        }
+      ],
+      "circlePosition": {
+        "top": 17,
+        "bottom": 95
+      }
+    }
+  ],
+  "textDefaults": [
+    {
+      "id": "name",
+      "defaultValue": "Jelölt Neve",
+      "font": "AgencyFB_bold_HUN, Impact",
+      "uppercase": true
+    },
+    {
+      "id": "area",
+      "defaultValue": "Körzet, megye, stb.",
+      "font": "AgencyFB_normal_HUN, Impact",
+      "uppercase": true
+    },
+    {
+      "id": "promise",
+      "defaultValue": "Jelmondat, szlogen, ígéret vagy bármi\nlehetőleg két sorban, vagy nem.",
+      "font": "Impact",
+      "uppercase": true
+    }
+  ],
+  "background":{
+    "default":{
+      "poster":null,
+      "fb_profile":null,
+      "fb_cover":null
+    },
+    "userImage":{
+      "back":{
+        "poster":null,
+        "fb_profile":null,
+        "fb_cover":null
+      },
+      "front":{
+        "poster":null,
+        "fb_profile":null,
+        "fb_cover":null
+      }
+    }
+  },
+  "userImage":{
+    "img":null,
+    "show":false,
+    "circle":true,
+    "poster":{
+      "width":80,
+      "height":55,
+      "x":10,
+      "y":17
+    },
+    "fb_profile":{
+      "width":80,
+      "height":62,
+      "x":10,
+      "y":22
+    },
+    "fb_cover":{
+      "width":30,
+      "height":78,
+      "x":3,
+      "y":17
+    }
+  },
+  "circleHeight":40
+}
