@@ -1,0 +1,79 @@
+    <div class="settings_panel">
+        <div class="settings">
+            <label for="form_name" class="input-label-text"><%= strings.candidate.name %></label>
+            <input type="text" id="form_name" />
+            <label for="form_area" class="input-label-text"><%= strings.candidate.area %></label>
+            <input type="text" id="form_area" />
+            <label for="form_promise" class="input-label-text"><%= strings.candidate.promise %></label>
+            <textarea id="form_promise"></textarea>
+            <div id="image-select">
+                <span class="input-label-text"><%= strings.candidate.photo %></span>
+                <div class="switch">
+                    <span id="btn_image_default" class="image-radio checked"><%= strings.dogHead %></span>
+                    <span id="btn_image_upload" class="image-radio"><%= strings.uploadImage %></span>
+                </div>
+                <div id="image-select-userimage">
+                    <div style="width:100%;height:36px;overflow:hidden;">
+                        <div style="float:left;line-height:36px;"><%= strings.dragHereToUpload %></div>
+                        <div style="float:right;">
+                            <input type="file" id="form_image" />
+                            <label for="form_image"><i class="fa fa-folder-open"></i> <%= strings.browse %></label>
+                        </div>
+                    </div>
+                    <div style="font-style:italic;margin:10px 0 20px;"><%= strings.usePNGimage %></div>
+                    <div>
+                        <div class="image-checkbox-cnt">
+                            <div id="image-circle">
+                                <div id="image-circle-checkbox">
+                                    <i id="image-circle-icon" class="fa fa-check"></i>
+                                </div>
+                                <div id="image-circle-label"><%= strings.frame %></div>
+                            </div>
+                            <div id="image-circle-cut">
+                                <div id="image-circle-cut-checkbox">
+                                    <i id="image-circle-cut-icon" class="fa fa-check"></i>
+                                </div>
+                                <div id="image-circle-cut-label"><%= strings.frameCut %></div>
+                            </div>
+                        </div>
+                        <div id="image-circle-height">
+                            <label for="form_image_circle_height"><%= strings.frameCutHeight %></label>
+                            <input type="range" id="form_image_circle_height" value="40" min="0" max="75" step="1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="save-area">
+                <button id="btn_save_poster" class="save-btn"><i class="fa fa-download"></i> <%= strings.poster %></button>
+                <button id="btn_save_fb_profile" class="save-btn"><i class="fa fa-download"></i> <%= strings.profilePicture %></button>
+                <button id="btn_save_fb_cover" class="save-btn"><i class="fa fa-download"></i> <%= strings.coverPhoto %></button>
+            </div>
+        </div>
+    </div>
+    <div class="preview_cnt">
+        <div class="preview_poster_outer">
+            <div class="preview_table preview_table_poster">
+                <div class="preview_table_cell preview_poster">
+                    <canvas id="canvas_poster"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="preview_fb">
+            <div class="preview_table preview_table_fb">
+                <div class="preview_table_cell preview_fb_profile">
+                    <canvas id="canvas_fb_profile"></canvas>
+                </div>
+            </div>
+            <div class="preview_table preview_table_fb">
+                <div class="preview_table_cell preview_fb_cover">
+                    <canvas id="canvas_fb_cover"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<a id="da"></a>
+
+<div class="dropzone">
+    <p><%= strings.dropFileHere %></p>
+</div>

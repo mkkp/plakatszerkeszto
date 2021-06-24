@@ -1,0 +1,269 @@
+$font-dir: '../fonts/';
+$image-dir: '../img/';
+
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome.scss';
+
+@font-face {
+  font-family: 'AgencyFB_normal_HUN';
+  src: url($font-dir + 'AgencyFB_normal_HUN.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  url($font-dir + 'AgencyFB_normal_HUN.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: 'AgencyFB_bold_HUN';
+  src: url($font-dir + 'AgencyFB_bold_HUN.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  url($font-dir + 'AgencyFB_bold_HUN.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+@font-face {
+  font-family: 'Impact';
+  font-style: normal;
+  font-weight: 400;
+  src: url($font-dir + 'Impact_latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Impact';
+  font-style: normal;
+  font-weight: 400;
+  src: url($font-dir + 'Impact_latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, 'sans-serif';
+}
+
+input[type="text"], textarea {
+  display: block;
+  width: calc(100% - 30px);
+  padding: 10px 15px;
+  border: 1px solid white;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+  font-size: 14pt;
+  resize: vertical;
+  font-family: Helvetica, Arial, serif;
+}
+input[type="text"]:hover, input[type="text"]:focus, textarea:hover, textarea:focus {
+  border: 1px solid lightgray;
+  border-bottom: 2px solid black;
+}
+
+.save-area {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.save-btn {
+  width: 130px;
+  margin-bottom: 5px;
+  padding: 10px 0;
+  border: 2px solid black;
+  font-size: 12pt;
+  background: white;
+  cursor: pointer;
+}
+.save-btn:hover, .save-btn:focus {
+  background: black;
+  color: white;
+}
+
+.input-label-text {
+  display: block;
+  margin-top: 30px;
+  font-size: 14pt;
+}
+
+.switch span {
+  display: block;
+  float: left;
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+  width: calc(50% - 24px);
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.switch.inline span {
+  width: auto !important;
+  padding: 5px 10px 3px;
+}
+
+.switch span.checked {
+  background-color: black;
+  color: white;
+}
+
+.settings_panel {
+  max-width: 450px;
+  width: 100%;
+  float: left;
+}
+
+.settings {
+  margin: 20px;
+}
+
+.preview_cnt {
+  min-width: 400px;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url($image-dir + 'bg-graph-tile-1.png');
+}
+
+.preview_poster_outer {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.preview_fb {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.preview_table {
+  display: table;
+}
+
+.preview_table_poster {
+  width: 100%;
+  height: 100%;
+}
+
+.preview_table_fb {
+  width: 100%;
+  height: 50%;
+}
+
+.preview_table_cell {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+
+#canvas_poster, #canvas_fb_profile, #canvas_fb_cover {
+  display: block;
+  margin: auto;
+  max-width: 95%;
+  max-height: 95vh;
+}
+#canvas_fb_profile, #canvas_fb_cover {
+  max-height: 45vh;
+}
+
+#image-select {
+  overflow: hidden;
+}
+
+#image-select-userimage {
+  display: none;
+  padding: 20px 0;
+}
+
+#form_image {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+#form_image + label {
+  display: inline-block;
+  padding: 5px 0;
+  border: 2px solid black;
+  cursor: pointer;
+  width: 126px;
+  text-align: center;
+}
+#form_image:focus + label, #form_image + label:hover {
+  background-color: black;
+  color: white;
+}
+
+.image-checkbox-cnt {
+  overflow: hidden;
+}
+
+#image-circle, #image-circle-cut {
+  width: 50%;
+  float: left;
+}
+#image-circle-checkbox, #image-circle-cut-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid black;
+  text-align: center;
+  padding: 2px;
+  float: left;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#image-circle-label, #image-circle-cut-label {
+  line-height: 24px;
+}
+
+#image-circle-height {
+  margin-top: 20px;
+}
+#form_image_circle_height {
+  width: 100%;
+}
+
+#save-btn {
+  margin-top: 50px;
+}
+
+.dropzone {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dropzone p {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin: 0;
+  font-size: 40px;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .settings_panel {
+    max-width: 100%;
+  }
+
+  .preview_cnt {
+    height: 200vh;
+  }
+
+  .preview_poster_outer {
+    width: 100%;
+    height: 50%;
+    float: none;
+  }
+
+  .preview_fb {
+    width: 100%;
+    height: 50%;
+    float: none;
+  }
+}
