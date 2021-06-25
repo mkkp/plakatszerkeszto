@@ -1,0 +1,13 @@
+.preview_event_cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  canvas {
+    display: block;
+    max-width: 95%;
+    max-height: 95vh;
+  }
+}

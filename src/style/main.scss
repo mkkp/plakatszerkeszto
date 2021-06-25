@@ -17,6 +17,16 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 @font-face {
+  font-family: 'Montserrat_black';
+  src: url($font-dir + 'Montserrat-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoCondensed_bold';
+  src: url($font-dir + 'RobotoCondensed-Bold.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'Impact';
   font-style: normal;
   font-weight: 400;

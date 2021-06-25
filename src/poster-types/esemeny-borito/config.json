@@ -1,0 +1,71 @@
+{
+  "canvases": [
+    {
+      "id": "event_cover",
+      "size": {
+        "width": 1920,
+        "height": 1000
+      },
+      "texts": [
+        {
+          "id": "title",
+          "position": {
+            "width": 90,
+            "height": 10,
+            "top": 56
+          }
+        },
+        {
+          "id": "subtitle",
+          "position": {
+            "width": 90,
+            "height": 7,
+            "top": 69.5
+          }
+        },
+        {
+          "id": "date",
+          "position": {
+            "width": 90,
+            "height": 5.6,
+            "top": 79
+          }
+        },
+        {
+          "id": "address",
+          "position": {
+            "width": 90,
+            "height": 3,
+            "top": 87.5
+          }
+        }
+      ]
+    }
+  ],
+  "textDefaults": [
+    {
+      "id": "title",
+      "defaultValue": "Ötletelős klub",
+      "font": "Montserrat_black, Impact",
+      "uppercase": true
+    },
+    {
+      "id": "subtitle",
+      "defaultValue": "Jászárokszállás",
+      "font": "Montserrat_black, Impact",
+      "uppercase": true
+    },
+    {
+      "id": "date",
+      "defaultValue": "2021. augusztus 40.",
+      "font": "RobotoCondensed_bold, Impact",
+      "uppercase": true
+    },
+    {
+      "id": "address",
+      "defaultValue": "Kastarcsai utca 24. (vegasz sörözötő)",
+      "font": "RobotoCondensed_bold, Impact",
+      "uppercase": true
+    }
+  ]
+}

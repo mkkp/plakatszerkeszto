@@ -1,8 +1,9 @@
 export function imageLoader(src) {
-    const img = new Image();
-    img.addEventListener('load', () => {}, false);
-    img.src = src;
-    return img;
+    return new Promise(resolve => {
+        const img = new Image();
+        img.addEventListener('load', () => resolve(img), false);
+        img.src = src;
+    });
 }
 
 export function clearCanvas(canvas) {

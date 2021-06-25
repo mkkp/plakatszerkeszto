@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "title": "Esemény megnevezése:",
+    "subtitle": "Alcím:",
+    "date": "Dátum:",
+    "address": "Helyszín:"
+  },
+  "download": "Mentés",
+  "uploadImage": "Kép feltöltése",
+  "browse": "Tallózás...",
+  "dragHereToUpload": "Húzz ide egy képet a feltöltéshez",
+  "dropFileHere": "Ejtsd ide a fájlt a feltöltéshez",
+  "usePNGimage": "A legjobb eredményhez használj átlátszó hátterű, PNG formátumú képet!"
+}
