@@ -1,12 +1,13 @@
 import {imageLoader, clearCanvas, drawBackgroundColor, drawTextFromConfig} from '../../utils';
 import config from './config.json';
 
-const backgroundSrcPrefix = './img/bg_';
+const backgroundSrcPrefix = './bg/';
 
 class CanvasController {
     constructor() {
         this.HTMLcanvas = [];
         this.background = null;
+        this.textColor = 'black';
         this.textValues = {};
 
         config.canvases.forEach(canvas => {
@@ -22,7 +23,6 @@ class CanvasController {
         });
 
         this.loadBackground();
-
         this.repaint();
         // Wait for the fonts to load
         setTimeout(() => this.repaint(), 1000);
@@ -39,21 +39,24 @@ class CanvasController {
     repaint() {
         this.canvas.forEach(clearCanvas);
         this.drawBackgroundImage(this.background);
-        drawTextFromConfig(config, this.HTMLcanvas, this.textValues);
+        drawTextFromConfig(config, this.HTMLcanvas, this.textValues, this.textColor);
     }
 
-    loadBackground() {
-        //this.background = imageLoader(require(backgroundSrcPrefix + '02.png'));
-        imageLoader(require(backgroundSrcPrefix + '02.png')).then(img => {
-            this.background = img;
-            this.repaint();
-        });
+    async loadBackground() {
+        this.background = await imageLoader(require(backgroundSrcPrefix + '01.png'));
+        this.repaint();
     }
 
     setText(texts) {
         for (const textField of config.textDefaults) {
             this.textValues[textField.id] = texts[textField.id] || '';
         }
+        this.repaint();
+    }
+
+    async setBg(img, textColor) {
+        this.background = await imageLoader(img);
+        this.textColor = textColor;
         this.repaint();
     }
 

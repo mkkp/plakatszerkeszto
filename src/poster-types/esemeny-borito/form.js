@@ -11,6 +11,7 @@ class FormController {
         };
         this.callback = {
             textChange: function(){},
+            bgSelected: function(){},
             saveClick: function(){},
             userImageType: function(){},
             userImageSelected: function(){},
@@ -20,6 +21,7 @@ class FormController {
         this.input.subtitle = $('#form_subtitle');
         this.input.date = $('#form_date');
         this.input.address = $('#form_address');
+        this.input.choose_bg = $('.bg_item');
         this.input.save_event_cover = $('#btn_save_event_cover');
         this.input.userimage_default = $('#btn_image_default');
         this.input.userimage_upload = $('#btn_image_upload');
@@ -35,6 +37,12 @@ class FormController {
                 this.texts[text.id] = e.target.value;
                 this.callback.textChange(this.texts);
             });
+        });
+
+        this.selectBg(0);
+
+        this.input.choose_bg.click(e => {
+            this.selectBg(e.currentTarget.dataset.index);
         });
 
         this.input.save_event_cover.click(e => {
@@ -68,6 +76,12 @@ class FormController {
 
     setCallbacks(cb) {
         this.callback = cb;
+    }
+
+    selectBg(index) {
+        $('.selected_bg_overlay').remove();
+        $(`.bg_item[data-index=${index}]`).append('<div class="selected_bg_overlay"><i class="fa fa-check"></i></div>');
+        this.callback.bgSelected(index);
     }
 }
 

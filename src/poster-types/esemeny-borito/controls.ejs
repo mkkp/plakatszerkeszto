@@ -7,6 +7,15 @@
 <label for="form_address" class="input-label-text"><%= strings.fields.address %></label>
 <input type="text" id="form_address" />
 
+<p class="input-label-text"><%= strings.chooseBg %></p>
+<div class="default_backgrounds">
+    <% for (let i = 0; i < backgrounds.length; i++) { %>
+        <div class="bg_item" data-index="<%= i %>">
+            <img src="<%= backgrounds[i].thumb %>">
+        </div>
+    <% } %>
+</div>
+
 <div class="save-buttons">
     <button id="btn_save_event_cover" class="save-btn"><i class="fa fa-download"></i> <%= strings.download %></button>
 </div>

@@ -6,7 +6,7 @@ const backgroundSrcPrefix = './img/hatter_jelolt_';
 class CanvasController {
     constructor() {
         this.HTMLcanvas = [];
-        this.background = {};
+        this.background = config.background;
         this.textValues = {};
 
         config.canvases.forEach(canvas => {
@@ -22,7 +22,7 @@ class CanvasController {
         });
 
         this.loadBackground();
-
+        this.repaint();
         // Wait for the fonts to load
         setTimeout(() => this.repaint(), 1000);
     }
@@ -57,26 +57,27 @@ class CanvasController {
         drawTextFromConfig(config, this.HTMLcanvas, this.textValues);
     }
 
-    loadBackground() {
+    async loadBackground() {
         this.background = {
             default: {
-                poster: imageLoader(require(backgroundSrcPrefix + 'plakat_kutyafej.jpg')),
-                fb_profile: imageLoader(require(backgroundSrcPrefix + 'profile_kutyafej.jpg')),
-                fb_cover: imageLoader(require(backgroundSrcPrefix + 'cover_kutyafej.jpg'))
+                poster: await imageLoader(require(backgroundSrcPrefix + 'plakat_kutyafej.jpg')),
+                fb_profile: await imageLoader(require(backgroundSrcPrefix + 'profile_kutyafej.jpg')),
+                fb_cover: await imageLoader(require(backgroundSrcPrefix + 'cover_kutyafej.jpg'))
             },
             userImage: {
                 back: {
-                    poster: imageLoader(require(backgroundSrcPrefix + 'plakat.png')),
-                    fb_profile: imageLoader(require(backgroundSrcPrefix + 'profile.jpg')),
-                    fb_cover: imageLoader(require(backgroundSrcPrefix + 'cover.jpg'))
+                    poster: await imageLoader(require(backgroundSrcPrefix + 'plakat.png')),
+                    fb_profile: await imageLoader(require(backgroundSrcPrefix + 'profile.jpg')),
+                    fb_cover: await imageLoader(require(backgroundSrcPrefix + 'cover.jpg'))
                 },
                 front: {
-                    poster: imageLoader(require(backgroundSrcPrefix + 'plakat_front.png')),
-                    fb_profile: imageLoader(require(backgroundSrcPrefix + 'profile_front.png')),
-                    fb_cover: imageLoader(require(backgroundSrcPrefix + 'cover_front.png'))
+                    poster: await imageLoader(require(backgroundSrcPrefix + 'plakat_front.png')),
+                    fb_profile: await imageLoader(require(backgroundSrcPrefix + 'profile_front.png')),
+                    fb_cover: await imageLoader(require(backgroundSrcPrefix + 'cover_front.png'))
                 }
             }
         };
+        this.repaint();
     }
 
     setText(texts) {

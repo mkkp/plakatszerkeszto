@@ -45,7 +45,7 @@ export function drawText(textValue, canvas, options) {
     let longestLine = lines[0];
     let textWidth;
 
-    ctx.fillStyle = "black";
+    ctx.fillStyle = options.color || "black";
     ctx.font = fontSize + "pt " + font;
 
     for (let j = 0; j < lineCount; j++) {
@@ -72,11 +72,14 @@ export function drawText(textValue, canvas, options) {
     });
 }
 
-export function drawTextFromConfig(config, canvases, textValues) {
+export function drawTextFromConfig(config, canvases, textValues, color) {
     config.canvases.forEach(canvasConfig => canvasConfig.texts.forEach(textConfig => {
         const options = Object.assign(config.textDefaults.find(item => item.id === textConfig.id), textConfig);
         const value = textValues[textConfig.id] === undefined ? options.defaultValue : textValues[textConfig.id];
         const canvas = canvases.find(item => item.id === canvasConfig.id).el;
+
+        options.color = color;
+
         drawText(value, canvas, options);
     }));
 }
