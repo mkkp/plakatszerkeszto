@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin-legacy');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -26,14 +27,7 @@ const plugins = [
 ];
 
 if(PROD) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false,
-        },
-        output: {
-            comments: false,
-        }
-    }));
+    plugins.push(new TerserPlugin());
     plugins.push(new CleanWebpackPlugin([DIST_DIR]));
     plugins.push(new FaviconsWebpackPlugin({
         logo: './src/img/kutyafej_icon.png',
