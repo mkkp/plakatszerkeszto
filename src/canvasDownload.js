@@ -5,12 +5,12 @@ let canvasDownload = {};
 canvasDownload.download = function(canvas, name, type) {
     let filename = name.replace(/\s/g, '').substring(0, 15);
     if (type) filename = filename + '_' + type;
-    filename = filename + '_' + moment().format('YYYYMMDD_HHmm') + '.jpg';
+    filename = filename + '_' + moment().format('YYYYMMDD_HHmm') + '.png';
 
     const a = document.getElementById('da');
-    a.setAttribute('href', canvas.toDataURL('image/jpeg').replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
+    a.setAttribute('href', canvas.toDataURL('image/png').replace(/^data:image\/[^;]/, 'data:application/octet-stream'));
     a.setAttribute('download', filename);
-    a.setAttribute('type', 'image/jpeg');
+    a.setAttribute('type', 'image/png');
     a.click();
 }
 
