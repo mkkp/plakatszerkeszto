@@ -1,4 +1,4 @@
-import {imageLoader, clearCanvas, drawBackgroundColor, drawTextFromConfig} from '../../utils';
+import {imageLoader, clearCanvas, drawOverlay, drawTextFromConfig} from '../../utils';
 import config from './config.json';
 
 const backgroundSrcPrefix = './bg/';
@@ -9,6 +9,7 @@ class CanvasController {
         this.background = null;
         this.textColor = 'black';
         this.textValues = {};
+        this.options = {};
 
         config.canvases.forEach(canvas => {
             const canvasElement = document.getElementById('canvas_' + canvas.id);
@@ -37,9 +38,16 @@ class CanvasController {
     }
 
     repaint() {
+        const color = this.options.isCustomBg ? this.options.textColor : this.textColor;
+        const overlayColor = this.options.textColor === 'black' ? 'white' : 'black';
+
         this.canvas.forEach(clearCanvas);
         this.drawBackgroundImage(this.background);
-        drawTextFromConfig(config, this.HTMLcanvas, this.textValues, this.textColor);
+
+        if (this.options.overlayEnabled && this.options.isCustomBg)
+            drawOverlay(this.HTMLcanvas[0].el, config.canvases[0].overlays[0], overlayColor);
+
+        drawTextFromConfig(config, this.HTMLcanvas, this.textValues, color);
     }
 
     async loadBackground() {
@@ -54,9 +62,20 @@ class CanvasController {
         this.repaint();
     }
 
+    setOptions(options) {
+        this.options = options;
+        this.repaint();
+    }
+
     async setBg(img, textColor) {
         this.background = await imageLoader(img);
         this.textColor = textColor;
+        this.repaint();
+    }
+
+    async setCustomBg(img) {
+        this.background = img;
+        this.textColor = 'black';
         this.repaint();
     }
 
@@ -74,7 +93,7 @@ class CanvasController {
 
             const hRatio = canvas.width / img.width;
             const vRatio = canvas.height / img.height;
-            const ratio = Math.min(hRatio, vRatio);
+            const ratio = Math.max(hRatio, vRatio);
             const centerShift_x = (canvas.width - img.width * ratio) / 2;
             const centerShift_y = ((canvas.height - img.height * ratio) / 2);
 

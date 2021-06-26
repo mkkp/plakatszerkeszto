@@ -20,6 +20,26 @@ export function drawBackgroundColor(canvas) {
     ctx.fillStyle = originalColor;
 }
 
+export function drawOverlay(canvas, overlay, color) {
+    if(!canvas || !overlay) return;
+
+    const ctx = canvas.getContext("2d");
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+    //const originalColor = ctx.fillStyle;
+
+    const height = canvasHeight * (overlay.height / 100);
+    const width = canvasWidth * (overlay.width / 100);
+    const x = (canvasWidth - width) / 2;
+    const y = canvasHeight * (overlay.top / 100);
+
+    ctx.save();
+    ctx.globalAlpha = 0.73;
+    ctx.fillStyle = color || "white";
+    ctx.fillRect(x, y, width, height);
+    ctx.restore();
+}
+
 export function drawText(textValue, canvas, options) {
     if (!textValue || !canvas || !options) return;
 

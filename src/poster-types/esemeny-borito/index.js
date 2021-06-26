@@ -25,15 +25,16 @@ class EsemenyBorito {
 
         this.formController.setCallbacks({
             textChange: texts => this.canvasController.setText(texts),
+            optionsChange: options => this.canvasController.setOptions(options),
             bgSelected: index => this.canvasController.setBg(this.backgrounds[index].src, this.backgrounds[index].textColor),
+            customBgSelected: ImageUpload.readImageFile,
             saveClick: type => CanvasDownload.download(this.canvasController.getCanvas(type), this.formController.texts.title),
-            //userImageType: type => this.canvasController.setUserImageType(type),
-            userImageSelected: ImageUpload.readImageFile,
         });
     }
 
     setUserImage(img, isPNG) {
-        //this.canvasController.setUserImage(img, isPNG);
+        this.formController.customBgSelected();
+        this.canvasController.setCustomBg(img);
     }
 }
 

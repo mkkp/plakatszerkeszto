@@ -6,10 +6,15 @@
     "address": "Helyszín:"
   },
   "chooseBg": "Válassz hátteret:",
-  "download": "Mentés",
+  "defaultBackgrounds": "Alap hátterek",
   "uploadImage": "Kép feltöltése",
+  "textColor": "Szöveg színe:",
+  "black": "Fekete",
+  "white": "Fehér",
+  "textWhiteBg": "Háttér a szöveg mögött",
+  "download": "Mentés",
   "browse": "Tallózás...",
   "dragHereToUpload": "Húzz ide egy képet a feltöltéshez",
   "dropFileHere": "Ejtsd ide a fájlt a feltöltéshez",
-  "usePNGimage": "A legjobb eredményhez használj átlátszó hátterű, PNG formátumú képet!"
+  "usePNGimage": "Legalább 1920x1000 pixel méretű képet válassz!"
 }

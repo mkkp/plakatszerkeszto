@@ -12,7 +12,11 @@
   }
 }
 
-.default_backgrounds {
+.bg-switch {
+  margin: 30px 0 10px;
+}
+
+#background-defaults {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
@@ -39,4 +43,8 @@
     background: rgba(255, 255, 255, 0.7);
     font-size: 50px;
   }
+}
+
+#background-custom {
+  display: none;
 }

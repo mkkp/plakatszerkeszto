@@ -7,13 +7,49 @@
 <label for="form_address" class="input-label-text"><%= strings.fields.address %></label>
 <input type="text" id="form_address" />
 
-<p class="input-label-text"><%= strings.chooseBg %></p>
-<div class="default_backgrounds">
+<div id="bg_switch" class="switch bg-switch">
+    <span id="btn_bg_default" class="checked"><%= strings.defaultBackgrounds %></span>
+    <span id="btn_bg_custom"><%= strings.uploadImage %></span>
+</div>
+
+<div id="background-defaults">
     <% for (let i = 0; i < backgrounds.length; i++) { %>
         <div class="bg_item" data-index="<%= i %>">
             <img src="<%= backgrounds[i].thumb %>">
         </div>
     <% } %>
+</div>
+
+<div id="background-custom">
+    <div style="width:100%;height:36px;overflow:hidden;">
+        <div style="float:left;line-height:36px;"><%= strings.dragHereToUpload %></div>
+        <div style="float:right;">
+            <input type="file" id="form_custom_bg" />
+            <label for="form_custom_bg"><i class="fa fa-folder-open"></i> <%= strings.browse %></label>
+        </div>
+    </div>
+
+    <div style="font-style:italic;margin-top:10px;"><%= strings.usePNGimage %></div>
+
+    <span class="input-label-text"><%= strings.textColor %></span>
+
+    <div class="radio-button-group">
+        <div id="text-black-radio" class="radio-button text-color-radio">
+            <i class="fa fa-dot-circle-o"></i>
+            <div><%= strings.black %></div>
+        </div>
+        <div id="text-white-radio" class="radio-button text-color-radio">
+            <i class="fa fa-circle-o"></i>
+            <div><%= strings.white %></div>
+        </div>
+    </div>
+
+    <div class="checkbox-group">
+        <div id="text-white-bg-checkbox" class="checkbox">
+            <i class="fa fa-check-square"></i>
+            <div><%= strings.textWhiteBg %></div>
+        </div>
+    </div>
 </div>
 
 <div class="save-buttons">

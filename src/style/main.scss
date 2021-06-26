@@ -123,9 +123,12 @@ select {
   font-size: 14pt;
 }
 
+.switch {
+  display: flex;
+}
+
 .switch span {
   display: block;
-  float: left;
   text-align: center;
   padding: 10px;
   margin: 10px 0;
@@ -144,7 +147,24 @@ select {
   color: white;
 }
 
-#image-select {
+.radio-button-group, .checkbox-group {
+  display: flex;
+  margin: 10px 0;
+}
+
+.radio-button, .checkbox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: default;
+
+  i {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+}
+
+.image-select {
   overflow: hidden;
 }
 
@@ -153,7 +173,7 @@ select {
   padding: 20px 0;
 }
 
-#form_image {
+input[type="file"] {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -161,7 +181,7 @@ select {
   position: absolute;
   z-index: -1;
 }
-#form_image + label {
+input[type="file"] + label {
   display: inline-block;
   padding: 5px 0;
   border: 2px solid black;
@@ -169,7 +189,7 @@ select {
   width: 126px;
   text-align: center;
 }
-#form_image:focus + label, #form_image + label:hover {
+input[type="file"]:focus + label, input[type="file"] + label:hover {
   background-color: black;
   color: white;
 }
@@ -203,5 +223,10 @@ select {
   #content {
     grid-template-columns: auto;
     grid-template-rows: auto auto;
+  }
+
+  .preview_cnt {
+    height: auto;
+    padding: 20px 0;
   }
 }

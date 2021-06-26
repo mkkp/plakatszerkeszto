@@ -2,33 +2,44 @@ import config from './config.json';
 
 class FormController {
     constructor() {
-        this.input = {};
         this.texts = {
             title: null,
             subtitle: null,
             date: null,
-            address: null
+            address: null,
+        };
+        this.options = {
+            isCustomBg: false,
+            textColor: 'black',
+            overlayEnabled: true,
         };
         this.callback = {
             textChange: function(){},
+            optionsChange: function(){},
             bgSelected: function(){},
+            customBgSelected: function(){},
             saveClick: function(){},
-            userImageType: function(){},
-            userImageSelected: function(){},
         };
-
-        this.input.title = $('#form_title');
-        this.input.subtitle = $('#form_subtitle');
-        this.input.date = $('#form_date');
-        this.input.address = $('#form_address');
-        this.input.choose_bg = $('.bg_item');
-        this.input.save_event_cover = $('#btn_save_event_cover');
-        this.input.userimage_default = $('#btn_image_default');
-        this.input.userimage_upload = $('#btn_image_upload');
-        this.input.userimage_browse = $('#form_image');
-        this.input.userimage_circle = $('#image-circle');
-        this.input.userimage_circle_cut = $('#image-circle-cut');
-        this.input.userimage_circle_height = $('#form_image_circle_height');
+        this.input = {
+            title: $('#form_title'),
+            subtitle: $('#form_subtitle'),
+            date: $('#form_date'),
+            address: $('#form_address'),
+            bg_type_switch: $('#bg_switch'),
+            bg_type_default: $('#btn_bg_default'),
+            bg_type_custom: $('#btn_bg_custom'),
+            choose_bg: $('.bg_item'),
+            bg_browse: $('#form_custom_bg'),
+            text_color_radio: $('.text-color-radio'),
+            text_color_black: $('#text-black-radio'),
+            text_color_white: $('#text-white-radio'),
+            text_white_bg_checkbox: $('#text-white-bg-checkbox'),
+            save_event_cover: $('#btn_save_event_cover'),
+        };
+        this.sections = {
+            bg_type_default: $('#background-defaults'),
+            bg_type_custom: $('#background-custom'),
+        };
 
         config.textDefaults.forEach(text => {
             this.texts[text.id] = text.defaultValue;
@@ -50,27 +61,41 @@ class FormController {
             this.callback.saveClick('event_cover');
         });
 
-        this.input.userimage_default.click(() => {
-            $('.image-radio').removeClass('checked');
-            this.input.userimage_default.addClass('checked');
-            $('#image-select-userimage').hide();
-            this.callback.userImageType('default');
-        });
+        this.input.bg_type_default.click(() => this.setBgTypeDefault());
 
-        this.input.userimage_upload.click(() => {
-            $('.image-radio').removeClass('checked');
-            this.input.userimage_upload.addClass('checked');
-            $('#image-select-userimage').show();
-            this.callback.userImageType('upload');
-        });
+        this.input.bg_type_custom.click(() => this.setBgTypeCustom());
 
-        this.input.userimage_browse.on('change', e => {
+        this.input.bg_browse.on('change', e => {
             let file = e.target.files[0];
             if (!file) {
                 return;
             }
 
-            this.callback.userImageSelected(file);
+            this.customBgSelected();
+            this.callback.customBgSelected(file);
+        });
+
+        this.input.text_color_black.click(() => {
+            this.options.textColor = 'black';
+            this.input.text_color_radio.children('i').removeClass('fa-circle-o fa-dot-circle-o');
+            this.input.text_color_black.children('i').addClass('fa-dot-circle-o');
+            this.input.text_color_white.children('i').addClass('fa-circle-o');
+            this.callback.optionsChange(this.options);
+        });
+
+        this.input.text_color_white.click(() => {
+            this.options.textColor = 'white';
+            this.input.text_color_radio.children('i').removeClass('fa-circle-o fa-dot-circle-o');
+            this.input.text_color_black.children('i').addClass('fa-circle-o');
+            this.input.text_color_white.children('i').addClass('fa-dot-circle-o');
+            this.callback.optionsChange(this.options);
+        });
+
+        this.input.text_white_bg_checkbox.click(() => {
+            this.options.overlayEnabled = !this.options.overlayEnabled;
+            this.input.text_white_bg_checkbox.children('i').removeClass('fa-square-o fa-check-square');
+            this.input.text_white_bg_checkbox.children('i').addClass(this.options.overlayEnabled ? 'fa-check-square' : 'fa-square-o');
+            this.callback.optionsChange(this.options);
         });
     }
 
@@ -80,8 +105,35 @@ class FormController {
 
     selectBg(index) {
         $('.selected_bg_overlay').remove();
+
+        if (index === undefined || index === null) return;
+
         $(`.bg_item[data-index=${index}]`).append('<div class="selected_bg_overlay"><i class="fa fa-check"></i></div>');
+
+        this.options.isCustomBg = false;
+        this.callback.optionsChange(this.options);
         this.callback.bgSelected(index);
+    }
+
+    setBgTypeDefault() {
+        this.input.bg_type_switch.children('span').removeClass('checked');
+        this.input.bg_type_default.addClass('checked');
+        this.sections.bg_type_custom.hide();
+        this.sections.bg_type_default.show();
+    }
+
+    setBgTypeCustom() {
+        this.input.bg_type_switch.children('span').removeClass('checked');
+        this.input.bg_type_custom.addClass('checked');
+        this.sections.bg_type_default.hide();
+        this.sections.bg_type_custom.show();
+    }
+
+    customBgSelected() {
+        this.selectBg();
+        this.setBgTypeCustom();
+        this.options.isCustomBg = true;
+        this.callback.optionsChange(this.options);
     }
 }
 
