@@ -15,6 +15,7 @@ class EsemenyBorito {
             { thumb: require('./bg_thumb/05.png'), src: require('./bg/05.png') },
             { thumb: require('./bg_thumb/06.png'), src: require('./bg/06.png'), textColor: 'white' },
             { thumb: require('./bg_thumb/07.png'), src: require('./bg/07.png'), textColor: 'white' },
+            { thumb: require('./bg_thumb/08.png'), src: require('./bg/08.png') },
         ];
 
         controlsRoot.html(controlsView({strings, backgrounds: this.backgrounds}));
