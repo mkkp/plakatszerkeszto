@@ -8,6 +8,8 @@ import CanvasDownload from './canvasDownload';
 import Jeloltplakat2018 from "./poster-types/jeloltplakat-2018";
 import EsemenyBorito from "./poster-types/esemeny-borito";
 
+const defaultType = 'esemeny-borito';
+
 $(function() {
     $('#content').html(defaultView({strings: hu}));
 
@@ -19,7 +21,7 @@ $(function() {
 });
 
 function changeType() {
-    const type = $('#poster_type_select').val();
+    const type = $('#poster_type_select').val() || defaultType;
     const controlsRoot = $('.controls');
     const canvasRoot = $('.preview_cnt');
     let typeController;
