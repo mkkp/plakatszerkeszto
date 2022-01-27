@@ -1,0 +1,20 @@
+{
+  "candidate": {
+    "name": "Jelölt neve:",
+    "area": "Választókerülete:",
+    "promise": "Ígérete:",
+    "photo": "Fénykép:"
+  },
+  "dogHead": "Kutyafej",
+  "uploadImage": "Kép feltöltése",
+  "poster": "Plakát",
+  "profilePicture": "Profilkép",
+  "coverPhoto": "Borítókép",
+  "frame": "Keret a kép körül",
+  "frameCut": "Keret kivágása",
+  "frameCutHeight": "Kivágás magassága:",
+  "browse": "Tallózás...",
+  "dragHereToUpload": "Húzz ide egy képet a feltöltéshez",
+  "dropFileHere": "Ejtsd ide a fájlt a feltöltéshez",
+  "usePNGimage": "A legjobb eredményhez használj átlátszó hátterű, PNG formátumú képet!"
+}

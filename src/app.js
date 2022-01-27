@@ -6,6 +6,7 @@ import DragNDrop from './dragndrop';
 import ImageUpload from './imageUpload';
 import CanvasDownload from './canvasDownload';
 import Jeloltplakat2018 from "./poster-types/jeloltplakat-2018";
+import Jeloltplakat2022 from "./poster-types/jeloltplakat-2022";
 import EsemenyBorito from "./poster-types/esemeny-borito";
 
 const defaultType = 'esemeny-borito';
@@ -28,6 +29,9 @@ function changeType() {
 
     if (type === 'jeloltplakat-2018') {
         typeController = new Jeloltplakat2018(controlsRoot, canvasRoot, ImageUpload, CanvasDownload);
+    }
+    else if (type === 'jeloltplakat-2022') {
+        typeController = new Jeloltplakat2022(controlsRoot, canvasRoot, ImageUpload, CanvasDownload);
     }
     else if (type === 'esemeny-borito') {
         typeController = new EsemenyBorito(controlsRoot, canvasRoot, ImageUpload, CanvasDownload);

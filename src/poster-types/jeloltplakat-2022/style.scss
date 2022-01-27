@@ -1,0 +1,91 @@
+.preview_poster_outer {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.preview_fb {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.preview_table {
+  display: table;
+}
+
+.preview_table_poster {
+  width: 100%;
+  height: 100%;
+}
+
+.preview_table_fb {
+  width: 100%;
+  height: 50%;
+}
+
+.preview_table_cell {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+
+#canvas_poster, #canvas_fb_profile, #canvas_fb_cover {
+  display: block;
+  margin: auto;
+  max-width: 95%;
+  max-height: 95vh;
+}
+#canvas_fb_profile, #canvas_fb_cover {
+  max-height: 45vh;
+}
+
+
+.image-checkbox-cnt {
+  overflow: hidden;
+}
+
+#image-circle, #image-circle-cut {
+  width: 50%;
+  float: left;
+}
+#image-circle-checkbox, #image-circle-cut-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid black;
+  text-align: center;
+  padding: 2px;
+  float: left;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#image-circle-label, #image-circle-cut-label {
+  line-height: 24px;
+}
+
+#image-circle-height {
+  margin-top: 20px;
+}
+#form_image_circle_height {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .settings_panel {
+    max-width: 100%;
+  }
+
+  .preview_poster_outer {
+    width: 100%;
+    height: 50%;
+    float: none;
+  }
+
+  .preview_fb {
+    width: 100%;
+    height: 50%;
+    float: none;
+  }
+}
