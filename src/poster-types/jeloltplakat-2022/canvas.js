@@ -195,8 +195,8 @@ class CanvasController {
             }
 
             if (!config.userImage.circle/* || !config.userImage.circleCut*/) {
-                width *= 0.9;
-                height *= 0.9;
+                width *= 1.3;
+                height *= 1.3;
                 y += canvasHeight * 0.05;
             }
             else if (!config.userImage.circleCut) {
