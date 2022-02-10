@@ -9,7 +9,7 @@ import Jeloltplakat2018 from "./poster-types/jeloltplakat-2018";
 import Jeloltplakat2022 from "./poster-types/jeloltplakat-2022";
 import EsemenyBorito from "./poster-types/esemeny-borito";
 
-const defaultType = 'esemeny-borito';
+const defaultType = 'jeloltplakat-2022';
 
 $(function() {
     $('#content').html(defaultView({strings: hu}));

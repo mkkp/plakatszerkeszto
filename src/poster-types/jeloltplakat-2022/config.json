@@ -11,8 +11,8 @@
           "id": "name",
           "position": {
             "width": 85,
-            "height": 3.5,
-            "top": 80
+            "height": 4.5,
+            "top": 76
           }
         },
         {
@@ -20,14 +20,14 @@
           "position": {
             "width": 85,
             "height": 2,
-            "top": 76
+            "top": 83
           }
         },
         {
           "id": "promise",
           "position": {
             "width": 90,
-            "height": 8,
+            "height": 7,
             "top": 87
           }
         }
@@ -49,7 +49,7 @@
           "position": {
             "width": 90,
             "height": 8,
-            "top": 88
+            "top": 82
           }
         }
       ],
@@ -70,7 +70,7 @@
           "position": {
             "width": 50,
             "height": 10,
-            "top": 27,
+            "top": 16,
             "centerX": 67
           }
         },
@@ -79,7 +79,7 @@
           "position": {
             "width": 50,
             "height": 5,
-            "top": 17,
+            "top": 32,
             "centerX": 67
           }
         },
@@ -103,19 +103,19 @@
     {
       "id": "name",
       "defaultValue": "Jelölt Neve",
-      "font": "AgencyFB_bold_HUN, Impact",
+      "font": "DINPro-CondensedBold, Impact",
       "uppercase": true
     },
     {
       "id": "area",
       "defaultValue": "Körzet, megye, stb.",
-      "font": "AgencyFB_normal_HUN, Impact",
+      "font": "DINPro-CondensedMedium, Impact",
       "uppercase": true
     },
     {
       "id": "promise",
       "defaultValue": "Jelmondat, szlogen, ígéret vagy bármi\nlehetőleg két sorban, vagy nem.",
-      "font": "Impact",
+      "font": "DINPro-CondensedBlack, Impact",
       "uppercase": true
     }
   ],
@@ -143,22 +143,22 @@
     "show":false,
     "circle":true,
     "poster":{
-      "width":80,
-      "height":55,
-      "x":10,
-      "y":17
+      "width":60,
+      "height":35,
+      "x":19,
+      "y":27
     },
     "fb_profile":{
-      "width":80,
-      "height":62,
-      "x":10,
-      "y":22
+      "width":60,
+      "height":37,
+      "x":19,
+      "y":33
     },
     "fb_cover":{
       "width":30,
-      "height":78,
-      "x":3,
-      "y":17
+      "height":50,
+      "x":6,
+      "y":27
     }
   },
   "circleHeight":40
