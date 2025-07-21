@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "deploy": "gh-pages -d dist"
   },
   "author": "MKKP",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "ejs-loader": "^0.5.0",
     "favicons-webpack-plugin": "6.0.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.0",
     "sass": "^1.89.2",
