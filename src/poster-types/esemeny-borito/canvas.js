@@ -38,7 +38,7 @@ class CanvasController {
         return this.HTMLcanvas.find(item => item.id === id).el;
     }
 
-    getEffectiveConfig() {
+getEffectiveConfig() {
         // Start with a deep copy of the base config to avoid modifying it.
         const effectiveConfig = JSON.parse(JSON.stringify(config));
 
@@ -50,9 +50,20 @@ class CanvasController {
         // Merge overrides for canvases (positions, overlays, etc.)
         if (overrides.canvases) {
             overrides.canvases.forEach(canvasOverride => {
-                const baseCanvas = effectiveConfig.canvases.find(c => c.id === canvasOverride.id);
+                let baseCanvas;
+                // First, try to find the canvas by its ID.
+                if (canvasOverride.id) {
+                    baseCanvas = effectiveConfig.canvases.find(c => c.id === canvasOverride.id);
+                } 
+                // If no ID is provided in the override AND there's only one canvas,
+                // assume the override is for that single canvas.
+                else if (effectiveConfig.canvases.length === 1) {
+                    baseCanvas = effectiveConfig.canvases[0];
+                }
+                // If we couldn't find a canvas to apply the override to, skip it.
                 if (!baseCanvas) return;
 
+                // Now the rest of the logic works correctly.
                 if (canvasOverride.overlays) {
                     baseCanvas.overlays = canvasOverride.overlays;
                 }
@@ -74,7 +85,6 @@ class CanvasController {
                     td => td.id === textDefaultOverride.id
                 );
                 if (baseTextDefault) {
-                    // Merge all properties from the override into the base default object
                     Object.assign(baseTextDefault, textDefaultOverride);
                 }
             });

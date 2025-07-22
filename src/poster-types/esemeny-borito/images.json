@@ -58,7 +58,50 @@
       ]
     } 
   },
-  { "filename": "_13.png" },
+
+  { "filename": "_13.png",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [], 
+            "texts": [
+                {
+                "id": "title",
+                "position": {
+                    "width": 90,
+                    "height": 10,
+                    "top": 36
+                }
+                },
+                {
+                "id": "subtitle",
+                "position": {
+                    "width": 90,
+                    "height": 7,
+                    "top": 49.5
+                }
+                },
+                {
+                "id": "date",
+                "position": {
+                    "width": 90,
+                    "height": 5.6,
+                    "top": 59
+                }
+                },
+                {
+                "id": "address",
+                "position": {
+                    "width": 90,
+                    "height": 3,
+                    "top": 67.5
+                }
+                }
+            ]            
+        }
+      ]
+    }
+  },
   { "filename": "_14.png" },
   { "filename": "_15.png" },
   { "filename": "_16.png" },
@@ -190,16 +233,15 @@
       ]
     } 
   },
-  { "filename": "_33.png" },
-  { "filename": "_34.png",
+  { "filename": "_33.png", "textColor": "white",
     "canvasOverrides": {
       "canvases": [
         {
             "overlays": [
                 {
                 "width": 100,
-                "height": 43,
-                "top": 51,
+                "height": 29,
+                "top": 65,
                 "color": "black",
                 "alpha": 0.73
                 }
@@ -210,7 +252,7 @@
                 "position": {
                     "width": 90,
                     "height": 10,
-                    "top": 5
+                    "top": 40
                 }
                 },
                 {
@@ -235,6 +277,57 @@
                     "width": 90,
                     "height": 3,
                     "top": 87.5
+                }
+                }
+            ]            
+        }
+      ]
+    }
+  },
+  { "filename": "_34.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 1,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ],
+            "texts": [
+                {
+                "id": "title",
+                "position": {
+                    "width": 90,
+                    "height": 10,
+                    "top": 6
+                }
+                },
+                {
+                "id": "subtitle",
+                "position": {
+                    "width": 90,
+                    "height": 7,
+                    "top": 19.5
+                }
+                },
+                {
+                "id": "date",
+                "position": {
+                    "width": 90,
+                    "height": 5.6,
+                    "top": 29
+                }
+                },
+                {
+                "id": "address",
+                "position": {
+                    "width": 90,
+                    "height": 3,
+                    "top": 37.5
                 }
                 }
             ]            
