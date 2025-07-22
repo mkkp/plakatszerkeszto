@@ -4,20 +4,21 @@ import controlsView from './controls.ejs';
 import canvasView from './canvas.ejs';
 import strings from './strings.json';
 import './style.scss';
+import backgroundData from './images.json';
+
+// Create a context for each image directory.
+// This tells Webpack to make all .png files in these folders available for dynamic import.
+const srcContext = require.context('./bg', false, /\.png$/);
+const thumbContext = require.context('./bg_thumb', false, /\.png$/);
 
 class EsemenyBorito {
     constructor(controlsRoot, canvasRoot, ImageUpload, CanvasDownload) {
-        this.backgrounds = [
-            { thumb: require('./bg_thumb/01.png'), src: require('./bg/01.png') },
-            { thumb: require('./bg_thumb/02.png'), src: require('./bg/02.png') },
-            { thumb: require('./bg_thumb/03.png'), src: require('./bg/03.png') },
-            { thumb: require('./bg_thumb/04.png'), src: require('./bg/04.png') },
-            { thumb: require('./bg_thumb/05.png'), src: require('./bg/05.png') },
-            { thumb: require('./bg_thumb/06.png'), src: require('./bg/06.png'), textColor: 'white' },
-            { thumb: require('./bg_thumb/07.png'), src: require('./bg/07.png'), textColor: 'white' },
-            { thumb: require('./bg_thumb/08.png'), src: require('./bg/08.png') },
-        ];
-
+        this.backgrounds = backgroundData.map(bg => ({
+            ...bg, // <-- Copies all original properties (like filename, textColor)
+            thumb: thumbContext('./' + bg.filename),
+            src: srcContext('./' + bg.filename)
+        }));
+        
         controlsRoot.html(controlsView({strings, backgrounds: this.backgrounds}));
         canvasRoot.html(canvasView());
 
@@ -27,7 +28,7 @@ class EsemenyBorito {
         this.formController.setCallbacks({
             textChange: texts => this.canvasController.setText(texts),
             optionsChange: options => this.canvasController.setOptions(options),
-            bgSelected: index => this.canvasController.setBg(this.backgrounds[index].src, this.backgrounds[index].textColor),
+            bgSelected: index => this.canvasController.setBg(this.backgrounds[index]),
             customBgSelected: ImageUpload.readImageFile,
             saveClick: type => CanvasDownload.download(this.canvasController.getCanvas(type), this.formController.texts.title),
         });

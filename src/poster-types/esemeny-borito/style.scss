@@ -48,3 +48,20 @@
 #background-custom {
   display: none;
 }
+
+.background-scroll-container {
+  /* Set a maximum height. Adjust this value as needed. */
+  max-height: 400px; 
+  
+  /* Show a vertical scrollbar ONLY if the content overflows */
+  overflow-y: auto; 
+  
+  /* Add some padding for better spacing */
+  padding: 5px; 
+  
+  /* A subtle border can help define the area */
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
