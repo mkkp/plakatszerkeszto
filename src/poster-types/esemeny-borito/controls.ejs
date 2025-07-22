@@ -12,12 +12,14 @@
     <span id="btn_bg_custom"><%= strings.uploadImage %></span>
 </div>
 
-<div id="background-defaults">
-    <% for (let i = 0; i < backgrounds.length; i++) { %>
-        <div class="bg_item" data-index="<%= i %>">
-            <img src="<%= backgrounds[i].thumb %>">
-        </div>
-    <% } %>
+<div class="background-scroll-container">
+    <div id="background-defaults">
+        <% for (let i = 0; i < backgrounds.length; i++) { %>
+            <div class="bg_item" data-index="<%= i %>">
+                <img src="<%= backgrounds[i].thumb %>">
+            </div>
+        <% } %>
+    </div>
 </div>
 
 <div id="background-custom">

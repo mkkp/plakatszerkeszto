@@ -1,8 +1,9 @@
 $font-dir: '../fonts/';
 $image-dir: '../img/';
 
-$fa-font-path: "~font-awesome/fonts";
-@import '~font-awesome/scss/font-awesome.scss';
+@use 'font-awesome/scss/font-awesome.scss' with (
+  $fa-font-path: '~font-awesome/fonts'
+);
 
 @font-face {
   font-family: 'AgencyFB_normal_HUN';

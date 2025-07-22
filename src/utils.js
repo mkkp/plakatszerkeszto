@@ -20,7 +20,7 @@ export function drawBackgroundColor(canvas) {
     ctx.fillStyle = originalColor;
 }
 
-export function drawOverlay(canvas, overlay, color) {
+export function drawOverlay(canvas, overlay, color, alpha) {
     if(!canvas || !overlay) return;
 
     const ctx = canvas.getContext("2d");
@@ -34,7 +34,7 @@ export function drawOverlay(canvas, overlay, color) {
     const y = canvasHeight * (overlay.top / 100);
 
     ctx.save();
-    ctx.globalAlpha = 0.73;
+    ctx.globalAlpha = alpha ??= 0.73;
     ctx.fillStyle = color || "white";
     ctx.fillRect(x, y, width, height);
     ctx.restore();

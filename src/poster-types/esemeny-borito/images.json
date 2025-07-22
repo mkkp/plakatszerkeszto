@@ -1,0 +1,356 @@
+[
+  { "filename": "01.png" },
+  { "filename": "02.png" },
+  { "filename": "03.png" },
+  { "filename": "04.png" },
+  { "filename": "05.png" },
+  { "filename": "06.png", "textColor": "white" },
+  { "filename": "07.png", "textColor": "black",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    }
+  },
+  { "filename": "08.png" },
+  { "filename": "_09.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    }
+  },
+  { "filename": "_10.png", "textColor": "white" },
+  { "filename": "_11.png", "textColor": "white" },
+  { "filename": "_12.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+
+  { "filename": "_13.png",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [], 
+            "texts": [
+                {
+                "id": "title",
+                "position": {
+                    "width": 90,
+                    "height": 10,
+                    "top": 36
+                }
+                },
+                {
+                "id": "subtitle",
+                "position": {
+                    "width": 90,
+                    "height": 7,
+                    "top": 49.5
+                }
+                },
+                {
+                "id": "date",
+                "position": {
+                    "width": 90,
+                    "height": 5.6,
+                    "top": 59
+                }
+                },
+                {
+                "id": "address",
+                "position": {
+                    "width": 90,
+                    "height": 3,
+                    "top": 67.5
+                }
+                }
+            ]            
+        }
+      ]
+    }
+  },
+  { "filename": "_14.png" },
+  { "filename": "_15.png" },
+  { "filename": "_16.png" },
+  { "filename": "_17.png" },
+  { "filename": "_18.png" },
+  { "filename": "_19.png" },
+  { "filename": "_20.png" },
+  { "filename": "_21.png" },
+  { "filename": "_22.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+  { "filename": "_23.png" },
+  { "filename": "_24.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+  { "filename": "_25.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+  { "filename": "_26.png" },
+  { "filename": "_27.png" },
+  { "filename": "_28.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+  { "filename": "_29.png" },
+  { "filename": "_30.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+  { "filename": "_31.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+  { "filename": "_32.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    } 
+  },
+  { "filename": "_33.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 29,
+                "top": 65,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ],
+            "texts": [
+                {
+                "id": "title",
+                "position": {
+                    "width": 90,
+                    "height": 10,
+                    "top": 40
+                }
+                },
+                {
+                "id": "subtitle",
+                "position": {
+                    "width": 90,
+                    "height": 7,
+                    "top": 69.5
+                }
+                },
+                {
+                "id": "date",
+                "position": {
+                    "width": 90,
+                    "height": 5.6,
+                    "top": 79
+                }
+                },
+                {
+                "id": "address",
+                "position": {
+                    "width": 90,
+                    "height": 3,
+                    "top": 87.5
+                }
+                }
+            ]            
+        }
+      ]
+    }
+  },
+  { "filename": "_34.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 1,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ],
+            "texts": [
+                {
+                "id": "title",
+                "position": {
+                    "width": 90,
+                    "height": 10,
+                    "top": 6
+                }
+                },
+                {
+                "id": "subtitle",
+                "position": {
+                    "width": 90,
+                    "height": 7,
+                    "top": 19.5
+                }
+                },
+                {
+                "id": "date",
+                "position": {
+                    "width": 90,
+                    "height": 5.6,
+                    "top": 29
+                }
+                },
+                {
+                "id": "address",
+                "position": {
+                    "width": 90,
+                    "height": 3,
+                    "top": 37.5
+                }
+                }
+            ]            
+        }
+      ]
+    }
+  },
+  { "filename": "_35.png", "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [
+        {
+            "overlays": [
+                {
+                "width": 100,
+                "height": 43,
+                "top": 51,
+                "color": "black",
+                "alpha": 0.73
+                }
+            ]
+        }
+      ]
+    }
+},
+  { "filename": "_36.png" }
+]

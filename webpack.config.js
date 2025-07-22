@@ -1,34 +1,28 @@
 const path = require('path');
 const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin-legacy');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const sass = require('sass');
 
 const TITLE = 'MKKP Plakátszerkesztő';
-
 const PROD = process.env.NODE_ENV === 'production';
 const DIST_DIR = 'dist';
-
-const extractSass = new ExtractTextPlugin({
-    filename: "[name].[hash].css"
-});
 
 const plugins = [
     new webpack.ProvidePlugin({
         $: 'jquery',
         _: 'lodash'
     }),
-    extractSass,
+    new MiniCssExtractPlugin({
+        filename: "[name].[contenthash].css"
+    }),
     new HtmlWebpackPlugin({
         template: 'src/views/index.ejs'
     })
 ];
 
-if(PROD) {
-    plugins.push(new TerserPlugin());
-    plugins.push(new CleanWebpackPlugin([DIST_DIR]));
+if (PROD) {
     plugins.push(new FaviconsWebpackPlugin({
         logo: './src/img/kutyafej_icon.png',
         title: TITLE
@@ -36,66 +30,63 @@ if(PROD) {
 }
 
 module.exports = {
+    mode: PROD ? 'production' : 'development',
     entry: './src/app.js',
     output: {
         path: path.resolve(__dirname, DIST_DIR),
-        filename: '[name].[chunkhash].js'
+        filename: '[name].[chunkhash].js',
+        clean: true,
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    'babel-loader'
-                ]
+                use: ['babel-loader']
             },
             {
-                test: /\.css$/,
+                test: /\.s?css$/,
                 use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.scss$/,
-                use: extractSass.extract({
-                    use: [{
-                        loader: 'css-loader'
-                    }, {
-                        loader: 'sass-loader'
-                    }],
-                    // use style-loader in development
-                    fallback: 'style-loader'
-                })
+                    PROD ? MiniCssExtractPlugin.loader : 'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            api: 'modern-compiler',
+                            implementation: sass,
+                            sassOptions: {
+                                // This silences deprecation warnings from dependencies like Font Awesome
+                                quietDeps: true,
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.ejs$/,
                 use: [
-                    'ejs-loader'
-                ]
+                    {
+                        loader: 'ejs-loader',
+                        options: {
+                            // This fixes the build error
+                            esModule: false,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[hash].[ext]',
-                        outputPath: 'img/',    // where the fonts will go
-                        publicPath: './'       // override the default path
-                    }
-                }]
+                type: 'asset/resource',
+                generator: {
+                  filename: 'img/[hash][ext][query]'
+                }
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'fonts/',    // where the fonts will go
-                        publicPath: './'       // override the default path
-                    }
-                }]
+                type: 'asset/resource',
+                generator: {
+                  filename: 'fonts/[name][ext][query]'
+                }
             }
         ]
     },
