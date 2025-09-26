@@ -1,8 +1,28 @@
 # MKKP Plakátszerkesztő
 
-A web-based poster editor application for creating political campaign materials.
+A web-based poster editor application for creating political campaign materials with advanced typography controls.
 
 🌐 **Live Site**: [https://plakat.mkkp.party](https://plakat.mkkp.party)
+
+## Recent Features
+
+### 🎨 Font Selection System
+- **8 Available Fonts**: Agency FB, DIN Pro, Impact, Montserrat, Roboto Condensed
+- **Real-time Preview**: Instant canvas updates when fonts change
+- **Per-field Control**: Individual font selection for each text element
+- **Hungarian Interface**: Complete localization support
+
+### 📱 Accordion UI Interface  
+- **Organized Layout**: Collapsible sections for text fields and font selectors
+- **Space Efficient**: Compact design with expandable content areas
+- **Smooth Animations**: CSS transitions for better user experience
+- **Responsive Design**: Works seamlessly across all device sizes
+
+### 🖼️ Advanced Background Configuration
+- **Image-specific Settings**: Custom text positioning and overlays per background
+- **Dynamic Text Colors**: Automatic white/black text based on background brightness
+- **Canvas Overrides**: Flexible configuration system for special layouts
+- **Thumbnail Support**: Optimized image loading with preview thumbnails
 
 ## Development Setup
 
@@ -42,7 +62,9 @@ Deploy to GitHub Pages locally:
 npm run deploy
 ```
 
-### Development Scripts
+### Development Workflow
+
+#### Development Scripts
 Use the provided scripts for easy development and testing:
 
 **Linux/Mac:**
@@ -77,6 +99,24 @@ dev-server.bat clean
 
 The scripts automatically check for Node.js installation and install dependencies if needed.
 
+#### Testing New Features
+When adding new features like font selection or accordion UI:
+
+1. **Test in Development**: Use `npm start` for hot reload testing
+2. **Verify Build**: Run `npm run build` to check for compilation errors
+3. **Cross-Browser Testing**: Test in Chrome, Firefox, and Safari
+4. **Mobile Testing**: Verify responsive design on mobile devices
+5. **Performance Testing**: Check canvas rendering performance
+
+#### Adding New Poster Types
+Follow this workflow when creating new poster types:
+
+1. **Setup**: Create directory structure with all required files
+2. **Configuration**: Define canvas layout, images, and strings
+3. **Implementation**: Code canvas rendering and form controllers
+4. **Integration**: Register in main app and add to type selector
+5. **Testing**: Test all features including font selection and accordion UI
+
 ## GitHub Actions Deployment
 
 The project uses GitHub Actions for automated deployment to GitHub Pages.
@@ -110,16 +150,47 @@ on:
 
 ## Project Structure
 
-- `src/` - Source code
-  - `app.js` - Main application entry point
-  - `poster-types/` - Different poster templates
-  - `utils.js` - Utility functions
-  - `style/` - SCSS stylesheets
-  - `views/` - EJS templates
-  - `img/`, `fonts/` - Assets
-- `dist/` - Built files (generated)
-- `webpack.config.js` - Webpack configuration
-- `vite.config.js` - Vite configuration (alternative)
+```
+plakatszerkeszto/
+├── src/                          # Source code
+│   ├── app.js                    # Main application entry point
+│   ├── utils.js                  # Utility functions (canvas operations, image loading)
+│   ├── fonts.json                # Font configuration with 8 available fonts
+│   ├── poster-types/             # Different poster templates
+│   │   ├── esemeny-borito/       # Event cover poster type
+│   │   │   ├── bg/               # Full-size background images (36 images)
+│   │   │   ├── bg_thumb/         # Thumbnail images
+│   │   │   ├── img/              # Additional images
+│   │   │   ├── config.json       # Canvas layout and text positioning
+│   │   │   ├── images.json       # Background image definitions with overrides
+│   │   │   ├── strings.json      # Hungarian UI translations
+│   │   │   ├── index.js          # Main controller class
+│   │   │   ├── canvas.js         # Canvas rendering logic with font support
+│   │   │   ├── form.js           # Form handling with accordion UI
+│   │   │   ├── controls.ejs      # Control panel template with accordion
+│   │   │   ├── canvas.ejs        # Canvas container template
+│   │   │   └── style.scss        # Component-specific styles with accordion CSS
+│   │   ├── jeloltplakat-2018/    # 2018 candidate poster type
+│   │   └── jeloltplakat-2022/    # 2022 candidate poster type
+│   ├── style/
+│   │   └── main.scss             # Main SCSS stylesheet
+│   ├── views/
+│   │   ├── default.ejs           # Main layout template
+│   │   └── index.ejs             # Landing page template
+│   ├── img/                      # Shared images
+│   └── fonts/                    # Font files (8 font families)
+├── dist/                         # Built files (generated)
+├── webpack.config.js             # Webpack configuration
+├── vite.config.js                # Vite configuration (alternative)
+└── README.md                     # This documentation file
+```
+
+### Key Configuration Files
+
+- **fonts.json**: Central font registry with 8 available fonts
+- **config.json**: Canvas layout, text positioning, and default fonts
+- **images.json**: Background image definitions with text/overlay overrides
+- **strings.json**: Hungarian translations for UI elements
 
 ## Technologies Used
 
@@ -149,10 +220,64 @@ Defines canvas layout and text positioning:
 
 #### images.json
 Defines available background images and their specific settings:
-- Array of background objects with `filename`
-- Optional `textColor`: Override default text color ("white" or "black")
-- Optional `canvasOverrides`: Per-background canvas customizations
-  - Can override `texts` positions and `overlays` properties
+
+**Basic Structure:**
+```json
+[
+  { "filename": "01.png" },
+  { "filename": "02.png", "textColor": "white" },
+  {
+    "filename": "special.png",
+    "textColor": "white",
+    "canvasOverrides": {
+      "canvases": [{
+        "overlays": [],
+        "texts": []
+      }]
+    }
+  }
+]
+```
+
+**Properties:**
+- `filename` (required): Name of the background image file
+- `textColor` (optional): Override default text color ("white" or "black")
+- `canvasOverrides` (optional): Per-background canvas customizations
+
+**Canvas Overrides Structure:**
+```json
+"canvasOverrides": {
+  "canvases": [{
+    "overlays": [{
+      "width": 100,      // Percentage width
+      "height": 43,      // Percentage height  
+      "top": 51,         // Percentage from top
+      "color": "black",  // Overlay color
+      "alpha": 0.73      // Transparency (0-1)
+    }],
+    "texts": [{
+      "id": "title",
+      "position": {
+        "width": 90,
+        "height": 10,
+        "top": 36
+      }
+    }]
+  }]
+}
+```
+
+**Key Features:**
+- **Text Positioning**: Override text positions for specific backgrounds
+- **Overlay Customization**: Add/remove text background overlays
+- **Color Control**: Set text color based on background brightness
+- **Responsive Design**: All positioning uses percentage values
+
+**Image Requirements:**
+- **Full-size images**: Place in `bg/` directory (e.g., `01.png`)
+- **Thumbnails**: Place in `bg_thumb/` directory (same filename)
+- **Resolution**: Optimized for 1920x1000px (event covers)
+- **Format**: PNG recommended for transparency support
 
 #### strings.json
 UI text translations (Hungarian):
@@ -288,10 +413,11 @@ Fonts are configured in `config.json` using font IDs instead of direct font fami
 ```
 
 #### UI Implementation
-Font selectors are automatically generated for each text field in the control panel:
-- **Font dropdowns** appear for name, area, and promise fields
-- **Real-time preview** updates canvas rendering immediately
-- **Hungarian labels** with "Betűtípus" translation
+Font selectors are integrated into the accordion interface:
+- **Accordion layout**: Each text field has its own collapsible section
+- **Font dropdowns**: Located within each accordion's content area
+- **Real-time preview**: Updates canvas rendering immediately
+- **Hungarian labels**: "Betűtípus" translation for font selection
 
 #### Technical Implementation
 - **Font loading**: All fonts pre-loaded via Webpack asset modules
@@ -299,11 +425,97 @@ Font selectors are automatically generated for each text field in the control pa
 - **State management**: Font selections persist across background changes
 - **Callback system**: Font changes trigger canvas redraw
 
+### Accordion UI System
+
+The interface now uses an accordion layout to organize text fields and font selectors:
+
+#### Structure
+```html
+<div class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-header">
+      <span>Field Label</span>
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    <div class="accordion-content">
+      <input type="text" id="form_field" />
+      <label for="font_field">Betűtípus</label>
+      <select id="font_field" class="font-selector"></select>
+    </div>
+  </div>
+</div>
+```
+
+#### Features
+- **Collapsible Sections**: Each text field has its own expandable area
+- **Single Active Item**: Only one accordion item can be open at a time
+- **Smooth Animations**: CSS transitions for expand/collapse
+- **Responsive Design**: Works on desktop and mobile devices
+- **Default State**: First accordion item opens by default
+
+#### Implementation Details
+- **JavaScript**: Accordion state managed in form controllers
+- **CSS**: Smooth transitions with max-height animations
+- **Icons**: Font Awesome chevron indicators
+- **Accessibility**: Keyboard navigation and screen reader support
+
+### Font Configuration (fonts.json)
+
+The `fonts.json` file defines all available fonts for the application:
+
+**Structure:**
+```json
+[
+  {
+    "id": "montserrat_black",
+    "name": "Montserrat Black",
+    "family": "Montserrat_black, Impact",
+    "cssFamily": "Montserrat_black, Impact"
+  },
+  {
+    "id": "roboto_condensed_bold",
+    "name": "Roboto Condensed Bold", 
+    "family": "RobotoCondensed_bold, Impact",
+    "cssFamily": "RobotoCondensed_bold, Impact"
+  }
+]
+```
+
+**Properties:**
+- `id`: Unique identifier used in config.json
+- `name`: Display name shown in dropdown menus
+- `family`: Font family stack for canvas rendering
+- `cssFamily`: Font family stack for CSS styling
+
+**Adding New Fonts:**
+1. Add font files to `src/fonts/` directory
+2. Update `fonts.json` with new font configuration
+3. Add font loading in `src/app.js` if needed
+4. Test font rendering in all poster types
+
 ### Best Practices
 
-- Use percentage-based positioning for responsive design
-- Provide both full-size and thumbnail images
-- Include Hungarian translations in strings.json
+#### Configuration Files
+- **config.json**: Use percentage-based positioning for responsive design
+- **images.json**: Provide both full-size and thumbnail images
+- **strings.json**: Include Hungarian translations for all UI elements
+- **fonts.json**: Maintain consistent font ID naming conventions
+
+#### Development Guidelines
 - Test with various text lengths and image sizes
 - Follow existing naming conventions and file structure
 - Configure fonts using font IDs in config.json
+- Use accordion layout for organized text input
+- Implement proper error handling for font loading
+
+#### Performance Considerations
+- Optimize image sizes for web delivery
+- Use Webpack asset modules for efficient font loading
+- Implement lazy loading for large background images
+- Test canvas rendering performance with different fonts
+
+#### Accessibility
+- Ensure proper contrast ratios for text readability
+- Implement keyboard navigation for accordion interface
+- Provide alt text for background images when relevant
+- Test with screen readers for accessibility compliance
