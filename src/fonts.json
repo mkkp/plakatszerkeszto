@@ -1,0 +1,50 @@
+[
+  {
+    "id": "montserrat_black",
+    "name": "Montserrat Black",
+    "family": "Montserrat_black, Impact",
+    "cssFamily": "Montserrat_black, Impact"
+  },
+  {
+    "id": "roboto_condensed_bold", 
+    "name": "Roboto Condensed Bold",
+    "family": "RobotoCondensed_bold, Impact",
+    "cssFamily": "RobotoCondensed_bold, Impact"
+  },
+  {
+    "id": "agencyfb_normal",
+    "name": "Agency FB Normal",
+    "family": "AgencyFB_normal_HUN, Impact",
+    "cssFamily": "AgencyFB_normal_HUN, Impact"
+  },
+  {
+    "id": "agencyfb_bold",
+    "name": "Agency FB Bold", 
+    "family": "AgencyFB_bold_HUN, Impact",
+    "cssFamily": "AgencyFB_bold_HUN, Impact"
+  },
+  {
+    "id": "dinpro_condensed_black",
+    "name": "DIN Pro Condensed Black",
+    "family": "DINPro-CondensedBlack, Impact",
+    "cssFamily": "DINPro-CondensedBlack, Impact"
+  },
+  {
+    "id": "dinpro_condensed_bold",
+    "name": "DIN Pro Condensed Bold",
+    "family": "DINPro-CondensedBold, Impact", 
+    "cssFamily": "DINPro-CondensedBold, Impact"
+  },
+  {
+    "id": "dinpro_condensed_medium",
+    "name": "DIN Pro Condensed Medium",
+    "family": "DINPro-CondensedMedium, Impact",
+    "cssFamily": "DINPro-CondensedMedium, Impact"
+  },
+  {
+    "id": "impact",
+    "name": "Impact",
+    "family": "Impact",
+    "cssFamily": "Impact"
+  }
+]

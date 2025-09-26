@@ -15,6 +15,7 @@ class Jeloltplakat2022 {
 
         this.formController.setCallbacks({
             textChange: texts => this.canvasController.setText(texts),
+            fontChange: fonts => this.canvasController.setFonts(fonts),
             saveClick: type => CanvasDownload.download(this.canvasController.getCanvas(type), this.formController.texts.name, type),
             userImageType: type => this.canvasController.setUserImageType(type),
             userImageSelected: ImageUpload.readImageFile,

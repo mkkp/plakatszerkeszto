@@ -1,5 +1,6 @@
-import {imageLoader, clearCanvas, drawBackgroundColor, drawTextFromConfig} from '../../utils';
+import {imageLoader, clearCanvas, drawBackgroundColor, drawText} from '../../utils';
 import config from './config.json';
+import fonts from '../../fonts.json';
 
 const backgroundSrcPrefix = './img/hatter_jelolt_';
 
@@ -8,6 +9,7 @@ class CanvasController {
         this.HTMLcanvas = [];
         this.background = config.background;
         this.textValues = {};
+        this.fonts = {};
 
         config.canvases.forEach(canvas => {
             const canvasElement = document.getElementById('canvas_' + canvas.id);
@@ -54,7 +56,7 @@ class CanvasController {
             this.drawBackgroundImage(this.background.default);
         }
 
-        drawTextFromConfig(config, this.HTMLcanvas, this.textValues);
+        this.drawTextWithSelectedFonts(config, this.HTMLcanvas, this.textValues);
     }
 
     async loadBackground() {
@@ -84,6 +86,11 @@ class CanvasController {
         for (const textField of config.textDefaults) {
             this.textValues[textField.id] = texts[textField.id] || '';
         }
+        this.repaint();
+    }
+
+    setFonts(fonts) {
+        this.fonts = fonts;
         this.repaint();
     }
 
@@ -210,6 +217,25 @@ class CanvasController {
 
             ctx.drawImage(img, 0, 0, img.width, img.height, x, y, width, height);
         });
+    }
+
+    drawTextWithSelectedFonts(config, canvases, textValues) {
+        config.canvases.forEach(canvasConfig => canvasConfig.texts.forEach(textConfig => {
+            const options = Object.assign(config.textDefaults.find(item => item.id === textConfig.id), textConfig);
+            const value = textValues[textConfig.id] === undefined ? options.defaultValue : textValues[textConfig.id];
+            const canvas = canvases.find(item => item.id === canvasConfig.id).el;
+
+            // Use selected font if available, otherwise use default from config
+            const selectedFontId = this.fonts[textConfig.id];
+            if (selectedFontId) {
+                const fontConfig = fonts.find(f => f.id === selectedFontId);
+                if (fontConfig) {
+                    options.font = fontConfig.family;
+                }
+            }
+
+            drawText(value, canvas, options);
+        }));
     }
 }
 

@@ -103,19 +103,19 @@
     {
       "id": "name",
       "defaultValue": "Jelölt Neve",
-      "font": "AgencyFB_bold_HUN, Impact",
+      "font": "agencyfb_bold",
       "uppercase": true
     },
     {
       "id": "area",
       "defaultValue": "Körzet, megye, stb.",
-      "font": "AgencyFB_normal_HUN, Impact",
+      "font": "agencyfb_normal",
       "uppercase": true
     },
     {
       "id": "promise",
       "defaultValue": "Jelmondat, szlogen, ígéret vagy bármi\nlehetőleg két sorban, vagy nem.",
-      "font": "Impact",
+      "font": "impact",
       "uppercase": true
     }
   ],

@@ -27,6 +27,7 @@ class EsemenyBorito {
 
         this.formController.setCallbacks({
             textChange: texts => this.canvasController.setText(texts),
+            fontChange: fonts => this.canvasController.setFonts(fonts),
             optionsChange: options => this.canvasController.setOptions(options),
             bgSelected: index => this.canvasController.setBg(this.backgrounds[index]),
             customBgSelected: ImageUpload.readImageFile,

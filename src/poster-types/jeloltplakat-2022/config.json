@@ -103,19 +103,19 @@
     {
       "id": "name",
       "defaultValue": "Jelölt Neve",
-      "font": "DINPro-CondensedBold, Impact",
+      "font": "dinpro_condensed_bold",
       "uppercase": true
     },
     {
       "id": "area",
       "defaultValue": "Körzet, megye, stb.",
-      "font": "DINPro-CondensedMedium, Impact",
+      "font": "dinpro_condensed_medium",
       "uppercase": true
     },
     {
       "id": "promise",
       "defaultValue": "Jelmondat, szlogen, ígéret vagy bármi\nlehetőleg két sorban, vagy nem.",
-      "font": "DINPro-CondensedBlack, Impact",
+      "font": "dinpro_condensed_black",
       "uppercase": true
     }
   ],

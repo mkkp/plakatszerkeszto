@@ -1,5 +1,6 @@
 import {imageLoader, clearCanvas, drawOverlay, drawTextFromConfig} from '../../utils';
 import config from './config.json';
+import fonts from '../../fonts.json';
 
 const backgroundSrcPrefix = './bg/';
 
@@ -9,6 +10,7 @@ class CanvasController {
         this.background = null;
         this.textColor = 'black';
         this.textValues = {};
+        this.fonts = {};
         this.options = {};
         this.activeBgConfig = null; // To store the config of the selected background
 
@@ -97,27 +99,34 @@ getEffectiveConfig() {
         const currentConfig = this.getEffectiveConfig();
 
         const color = this.options.isCustomBg ? this.options.textColor : this.textColor;
-        let overlayColor = this.options.textColor === 'black' ? 'white' : 'black';
+        let overlayColor = color === 'white' ? 'black' : 'white';
         let overlayAlpha = 0.73;
         this.canvas.forEach(clearCanvas);
         this.drawBackgroundImage(this.background);
+        
+        // Get overlay configuration - prioritize custom background overrides
         const overlayOverride = this.activeBgConfig?.canvasOverrides?.canvases[0]?.overlays[0];
+        const baseOverlay = currentConfig.canvases[0]?.overlays?.[0];
+        const effectiveOverlay = overlayOverride || baseOverlay;
 
-        if (overlayOverride && overlayOverride.color) {
-            overlayColor = overlayOverride.color;
+        if (effectiveOverlay && effectiveOverlay.color) {
+            overlayColor = effectiveOverlay.color;
         }
 
-        if (overlayOverride && overlayOverride.alpha) {
-            overlayAlpha = overlayOverride.alpha;
+        if (effectiveOverlay && effectiveOverlay.alpha) {
+            overlayAlpha = effectiveOverlay.alpha;
         }
 
-        if (this.options.overlayEnabled && this.options.isCustomBg || overlayOverride)
-            // Use the config from the merged result
-            //if (overlayOverride.color == )
-            drawOverlay(this.HTMLcanvas[0].el, overlayOverride, overlayColor, overlayAlpha);
+        // Draw overlay if enabled for custom backgrounds or if background has overlay defined
+        const shouldDrawOverlay = (this.options.overlayEnabled && this.options.isCustomBg) || 
+                                (effectiveOverlay && !this.options.isCustomBg);
+        
+        if (shouldDrawOverlay && effectiveOverlay) {
+            drawOverlay(this.HTMLcanvas[0].el, effectiveOverlay, overlayColor, overlayAlpha);
+        }
 
-        // Pass the merged config to the drawing utility
-        drawTextFromConfig(currentConfig, this.HTMLcanvas, this.textValues, color);
+        // Pass the merged config to the drawing utility with selected fonts
+        this.drawTextWithSelectedFonts(currentConfig, this.HTMLcanvas, this.textValues, color);
     }
 
     async loadBackground() {
@@ -130,6 +139,11 @@ getEffectiveConfig() {
         for (const textField of config.textDefaults) {
             this.textValues[textField.id] = texts[textField.id] || '';
         }
+        this.repaint();
+    }
+
+    setFonts(fonts) {
+        this.fonts = fonts;
         this.repaint();
     }
 
@@ -172,6 +186,29 @@ getEffectiveConfig() {
 
             ctx.drawImage(img, 0, 0, img.width, img.height, centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
         });
+    }
+
+    drawTextWithSelectedFonts(config, canvases, textValues, color) {
+        config.canvases.forEach(canvasConfig => canvasConfig.texts.forEach(textConfig => {
+            const options = Object.assign(config.textDefaults.find(item => item.id === textConfig.id), textConfig);
+            const value = textValues[textConfig.id] === undefined ? options.defaultValue : textValues[textConfig.id];
+            const canvas = canvases.find(item => item.id === canvasConfig.id).el;
+
+            options.color = color;
+            
+            // Use selected font if available, otherwise use default from config
+            const selectedFontId = this.fonts[textConfig.id];
+            if (selectedFontId) {
+                const fontConfig = fonts.find(f => f.id === selectedFontId);
+                if (fontConfig) {
+                    options.font = fontConfig.family;
+                }
+            }
+
+            // Use the drawText function directly
+            const { drawText } = require('../../utils');
+            drawText(value, canvas, options);
+        }));
     }
 }
 

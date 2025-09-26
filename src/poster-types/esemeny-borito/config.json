@@ -53,25 +53,25 @@
     {
       "id": "title",
       "defaultValue": "Ötletelős klub",
-      "font": "Montserrat_black, Impact",
+      "font": "montserrat_black",
       "uppercase": true
     },
     {
       "id": "subtitle",
       "defaultValue": "Jászárokszállás",
-      "font": "Montserrat_black, Impact",
+      "font": "montserrat_black",
       "uppercase": true
     },
     {
       "id": "date",
       "defaultValue": "2021. augusztus 40.",
-      "font": "RobotoCondensed_bold, Impact",
+      "font": "roboto_condensed_bold",
       "uppercase": true
     },
     {
       "id": "address",
       "defaultValue": "Kistarcsai utca 24. (Lasz Vegasz söröző)",
-      "font": "RobotoCondensed_bold, Impact",
+      "font": "roboto_condensed_bold",
       "uppercase": true
     }
   ]
