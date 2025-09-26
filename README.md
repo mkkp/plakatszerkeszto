@@ -42,6 +42,41 @@ Deploy to GitHub Pages locally:
 npm run deploy
 ```
 
+### Development Scripts
+Use the provided scripts for easy development and testing:
+
+**Linux/Mac:**
+```bash
+# Development server (hot reload)
+./dev-server.sh dev
+
+# Production build and serve
+./dev-server.sh production
+
+# Just build production version
+./dev-server.sh build
+
+# Clean build artifacts
+./dev-server.sh clean
+```
+
+**Windows:**
+```cmd
+# Development server (hot reload)
+dev-server.bat dev
+
+# Production build and serve
+dev-server.bat production
+
+# Just build production version
+dev-server.bat build
+
+# Clean build artifacts
+dev-server.bat clean
+```
+
+The scripts automatically check for Node.js installation and install dependencies if needed.
+
 ## GitHub Actions Deployment
 
 The project uses GitHub Actions for automated deployment to GitHub Pages.
@@ -218,6 +253,52 @@ To create a new poster type:
 }
 ```
 
+### Font Selection System
+
+All poster types now support dynamic font selection with 8 available fonts:
+
+#### Available Fonts
+1. **Agency FB (Bold)** - `agencyfb_bold`
+2. **Agency FB (Normal)** - `agencyfb_normal`
+3. **DIN Pro (Condensed Black)** - `dinpro_condensed_black`
+4. **DIN Pro (Condensed Bold)** - `dinpro_condensed_bold`
+5. **DIN Pro (Condensed Medium)** - `dinpro_condensed_medium`
+6. **Impact** - `impact`
+7. **Montserrat (Black)** - `montserrat_black`
+8. **Roboto Condensed (Bold)** - `roboto_condensed_bold`
+
+#### Font Configuration
+Fonts are configured in `config.json` using font IDs instead of direct font families:
+
+```json
+{
+  "textDefaults": [
+    {
+      "id": "title",
+      "font": "agencyfb_bold",
+      "uppercase": true
+    },
+    {
+      "id": "area",
+      "font": "dinpro_condensed_bold", 
+      "uppercase": true
+    }
+  ]
+}
+```
+
+#### UI Implementation
+Font selectors are automatically generated for each text field in the control panel:
+- **Font dropdowns** appear for name, area, and promise fields
+- **Real-time preview** updates canvas rendering immediately
+- **Hungarian labels** with "Betűtípus" translation
+
+#### Technical Implementation
+- **Font loading**: All fonts pre-loaded via Webpack asset modules
+- **Canvas rendering**: Uses `drawTextWithSelectedFonts()` method
+- **State management**: Font selections persist across background changes
+- **Callback system**: Font changes trigger canvas redraw
+
 ### Best Practices
 
 - Use percentage-based positioning for responsive design
@@ -225,3 +306,4 @@ To create a new poster type:
 - Include Hungarian translations in strings.json
 - Test with various text lengths and image sizes
 - Follow existing naming conventions and file structure
+- Configure fonts using font IDs in config.json
