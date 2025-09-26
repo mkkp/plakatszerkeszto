@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Selector Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .warning { background-color: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+    </style>
+</head>
+<body>
+    <h1>Font Selector Test Results</h1>
+    
+    <div id="results">
+        <div class="test-result" id="fonts-json">Checking fonts.json...</div>
+        <div class="test-result" id="config-json">Checking config.json...</div>
+        <div class="test-result" id="form-js">Checking form.js...</div>
+        <div class="test-result" id="canvas-js">Checking canvas.js...</div>
+        <div class="test-result" id="integration">Checking integration...</div>
+    </div>
+
+    <script>
+        // Test fonts.json
+        fetch('/src/fonts.json')
+            .then(response => response.json())
+            .then(fonts => {
+                const result = document.getElementById('fonts-json');
+                if (fonts && fonts.length === 8) {
+                    result.className = 'test-result success';
+                    result.innerHTML = '✅ fonts.json loaded successfully with 8 fonts';
+                } else {
+                    result.className = 'test-result error';
+                    result.innerHTML = '❌ fonts.json failed to load or has incorrect format';
+                }
+            })
+            .catch(error => {
+                document.getElementById('fonts-json').className = 'test-result error';
+                document.getElementById('fonts-json').innerHTML = '❌ fonts.json failed to load: ' + error.message;
+            });
+
+        // Test config.json
+        fetch('/src/poster-types/esemeny-borito/config.json')
+            .then(response => response.json())
+            .then(config => {
+                const result = document.getElementById('config-json');
+                if (config && config.textDefaults && config.textDefaults.every(td => td.font)) {
+                    result.className = 'test-result success';
+                    result.innerHTML = '✅ config.json loaded successfully with font references';
+                } else {
+                    result.className = 'test-result error';
+                    result.innerHTML = '❌ config.json failed to load or missing font references';
+                }
+            })
+            .catch(error => {
+                document.getElementById('config-json').className = 'test-result error';
+                document.getElementById('config-json').innerHTML = '❌ config.json failed to load: ' + error.message;
+            });
+
+        // Test form.js integration
+        setTimeout(() => {
+            const result = document.getElementById('integration');
+            if (typeof FormController !== 'undefined') {
+                result.className = 'test-result success';
+                result.innerHTML = '✅ FormController is available';
+            } else {
+                result.className = 'test-result warning';
+                result.innerHTML = '⚠️ FormController not available (may be normal if not loaded yet)';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
