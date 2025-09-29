@@ -23,6 +23,9 @@ class Jeloltplakat2022 {
             cutCircle: isCutEnabled => this.canvasController.setCircleCut(isCutEnabled),
             circleHeight: circleHeight => this.canvasController.setCircleHeight(circleHeight)
         });
+
+        // Send initial font selection to canvas controller
+        this.canvasController.setFonts(this.formController.fonts);
     }
 
     setUserImage(img, isPNG) {

@@ -103,3 +103,36 @@ export function drawTextFromConfig(config, canvases, textValues, color) {
         drawText(value, canvas, options);
     }));
 }
+
+export function waitForFonts(fontFamilies) {
+    if (!document.fonts || !document.fonts.ready) {
+        return Promise.resolve();
+    }
+    
+    const fontPromises = fontFamilies.map(fontFamily => {
+        return document.fonts.load(`12pt "${fontFamily}"`);
+    });
+    
+    return Promise.all(fontPromises);
+}
+
+export function getAllFontFamilies(fonts) {
+    const fontFamilies = new Set();
+    
+    if (!fonts || !Array.isArray(fonts)) {
+        // Fallback: try to require fonts.json if no fonts array provided
+        try {
+            fonts = require('./fonts.json');
+        } catch (e) {
+            console.warn('Could not load fonts.json:', e);
+            return [];
+        }
+    }
+    
+    fonts.forEach(font => {
+        const families = font.family.split(',').map(f => f.trim());
+        families.forEach(family => fontFamilies.add(family));
+    });
+    
+    return Array.from(fontFamilies);
+}

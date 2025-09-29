@@ -1,4 +1,4 @@
-import {imageLoader, clearCanvas, drawOverlay, drawTextFromConfig} from '../../utils';
+import {imageLoader, clearCanvas, drawOverlay, drawTextFromConfig, waitForFonts, getAllFontFamilies} from '../../utils';
 import config from './config.json';
 import fonts from '../../fonts.json';
 
@@ -27,9 +27,14 @@ class CanvasController {
         });
 
         this.loadBackground();
-        this.repaint();
-        // Wait for the fonts to load
-        setTimeout(() => this.repaint(), 1000);
+        
+        // Wait for all fonts to load before initial repaint
+        waitForFonts(getAllFontFamilies(fonts)).then(() => {
+            this.repaint();
+        }).catch(() => {
+            // Fallback: repaint even if font loading fails
+            this.repaint();
+        });
     }
 
     get canvas() {

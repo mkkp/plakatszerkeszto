@@ -33,6 +33,12 @@ class EsemenyBorito {
             customBgSelected: ImageUpload.readImageFile,
             saveClick: type => CanvasDownload.download(this.canvasController.getCanvas(type), this.formController.texts.title),
         });
+
+        // Send initial font selection to canvas controller
+        this.canvasController.setFonts(this.formController.fonts);
+        
+        // Send initial background selection to canvas controller
+        this.canvasController.setBg(this.backgrounds[0]);
     }
 
     setUserImage(img, isPNG) {
